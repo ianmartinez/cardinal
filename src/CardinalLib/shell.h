@@ -14,13 +14,13 @@ enum class ShellOS {
     Unix
 };
 
-#ifdef Q_OS_WINDOWS
+#if defined(Q_OS_WINDOWS)
 constexpr ShellOS SHELL_OS = ShellOS::Windows;
 constexpr const char *SHELL_NAME = "cmd.exe";
-#elif Q_OS_DARWIN
+#elif defined(Q_OS_DARWIN)
 constexpr ShellOS SHELL_OS = ShellOS::MacOS;
 constexpr const char *SHELL_NAME = "zsh";
-#elif Q_OS_LINUX
+#elif defined(Q_OS_LINUX)
 const ShellOS SHELL_OS = ShellOS::Linux;
 static constexpr const char *SHELL_NAME = "sh";
 #else
@@ -28,7 +28,7 @@ const ShellOS SHELL_OS = ShellOS::Unix;
 static constexpr const char *SHELL_NAME = "sh";
 #endif
 
-#ifdef Q_OS_UNIX
+#if defined(Q_OS_UNIX)
 const bool SHELL_IS_UNIX = true;
 static constexpr const char *COMMAND_ARG = "-c";
 static constexpr const char *SHELL_LOOKUP_APP = "which";
