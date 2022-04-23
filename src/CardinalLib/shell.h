@@ -2,11 +2,9 @@
 #define SHELL_H
 
 #include <QString>
-#include <QSharedPointer>
-#include <QProcess>
 
 /***
- * Environment
+ * OS-Specific details about the shell.
  */
 
 enum class ShellOS {
@@ -35,11 +33,15 @@ const bool SHELL_IS_UNIX = true;
 static constexpr const char *COMMAND_ARG = "-c";
 static constexpr const char *SHELL_LOOKUP_APP = "which";
 static constexpr const char *SHELL_NEW_LINE = "\\\n";
+static constexpr const char *OS_NEW_LINE = "\n";
 #else
 const bool SHELL_IS_UNIX = false;
 constexpr const char *COMMAND_ARG = "/c";
 constexpr const char *SHELL_LOOKUP_APP = "where";
 static constexpr const char *SHELL_NEW_LINE = "^\r\n";
+static constexpr const char *OS_NEW_LINE = "\r\n";
 #endif
 
-#endif
+QString localOSPath(QString path);
+
+#endif // SHELL_H
